@@ -10,13 +10,13 @@ def setup_dfs():
     frut_data = frut_data[col_to_choose]
     iff_data = iff_data[col_to_choose]
     iff_data['Date'] = pd.to_datetime(iff_data['Date'])
-    frut_data['Date'] = pd.to_datetime(frut_data['Date'])
+    frut_data['Date'] = pd.to_datetime(frut_data['Date'],format='%d.%m.%Y')
 
     frut_data = frut_data.set_index('Date')
     iff_data = iff_data.set_index('Date')
 
-    frut_data = frut_data.sort_index()
-    iff_data = iff_data.sort_index()
+    frut_data = frut_data.sort_index(ascending=False)
+    iff_data = iff_data.sort_index(ascending=False)
 
     iff_data['Price'] = pd.to_numeric(iff_data['Price'].astype(str).str.replace(",", ""))
     frut_data['Price'] = pd.to_numeric(frut_data['Price'].astype(str).str.replace(",", ""))
